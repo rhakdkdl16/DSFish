@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case State.READY:
-                if(Input.GetButtonDown("Fire1"))
+                if(Input.GetButtonDown("Fire2"))
                 {
                     GameStart();
                 }
@@ -69,7 +69,13 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore()//게임스코어 증가
     {
         score++;
-        GameObject.FindObjectOfType<ScrollObject>().speedUp();
+       ScrollObject[] games  =  GameObject.FindObjectsOfType<ScrollObject>();
+        for(int i = 0; i < games.Length;)
+        {
+        games[i].speedUp();
+        i++;
+        }
+        
         scoreText.text = "Score " + score.ToString();
         
     }
