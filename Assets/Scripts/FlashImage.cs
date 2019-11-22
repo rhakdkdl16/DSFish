@@ -8,7 +8,7 @@ public class FlashImage : MonoBehaviour
     
     private void Start()
     {
-        gameObject.SetActive(false);   
+          
     }
     private void Update()
     {

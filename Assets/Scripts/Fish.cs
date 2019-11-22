@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class Fish : MonoBehaviour
-{
-    [SerializeField] Sprite deadFish;
+{    
     [SerializeField] float jumpVelocity;
     [SerializeField] float maxHeight;
     [SerializeField] GameObject sprite;
     [SerializeField] FlashImage flashImage;
     Rigidbody2D rb;
     bool isDead;
-
+    bool gravity;
     
 
     public bool IsDead
@@ -61,6 +60,47 @@ public class Fish : MonoBehaviour
     public void SetKinematic(bool value)
     {
         rb.isKinematic = value;
+    }
+    public void Idle()
+    {
+        gravity = false;
+        isDead = false;
+        Animator a = sprite.GetComponent<Animator>();
+         a.SetTrigger("idle");        
+        StartCoroutine(SetDie());
+    }
+    IEnumerator SetDie()
+    {
+         //Color color = sprite.GetComponent<SpriteRenderer>().color;
+         CircleCollider2D collider = sprite.GetComponent<CircleCollider2D>();
+         float a = 0;
+         float buttonTime = Time.time;   
+
+         while(a < 3 )
+         {
+            float pingPong = Mathf.PingPong(Time.time * 5,1);
+            Color newColor = new Color(1,1,1,pingPong);
+
+            a =  Time.time - buttonTime ;
+
+            sprite.GetComponent<SpriteRenderer>().color = newColor;
+            collider.enabled = false;
+
+            if (gravity == false)
+            {
+                rb.isKinematic = true;
+            }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                rb.isKinematic = false;
+                gravity = true;
+            }
+
+            yield return null;
+         }
+        collider.enabled = true;
+        sprite.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        rb.isKinematic = false;
     }
 
 }
