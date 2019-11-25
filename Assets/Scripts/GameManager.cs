@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text finishScoreTExt;
     [SerializeField] Text bestScoreText;
     [SerializeField] Text BestScoret;
+    [SerializeField] Image bloodScreen;
     int score;
     int bestScore;
     Vector2 fishLocalpos;
@@ -68,10 +69,12 @@ public class GameManager : MonoBehaviour
             float a = Mathf.PingPong(Time.time , 1);
             BestScoret.gameObject.SetActive(true);
             BestScoret.color = new Color(a*4, a*4,a*4, 1);
+            bloodScreen.color = new Color(1, 1, 1, a);
         }
         else
         {
             BestScoret.gameObject.SetActive(false);
+            bloodScreen.color = new Color(1, 1, 1, 0);
         }
     }
     public void GameStart()
