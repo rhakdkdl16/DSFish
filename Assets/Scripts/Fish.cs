@@ -28,7 +28,7 @@ public class Fish : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && transform.position.y < maxHeight) 
+        if (Input.GetButtonDown("Fire1") && transform.position.y < maxHeight && transform.position.y > -6.3) 
         {
             if(!isDead && rb.isKinematic == false)
             rb.velocity = new Vector2(0, jumpVelocity);
@@ -46,16 +46,28 @@ public class Fish : MonoBehaviour
         }
         
         sprite.transform.localRotation = Quaternion.Euler(0, 0, angle);
+
+        //if (gameObject.transform.position.y < -3.5  && IsDead ==false)
+        //{
+        //    isDead = true;
+        //    Camera.main.SendMessage("Shake");
+        //    Animator a = sprite.GetComponent<Animator>();
+        //    a.SetTrigger("Dead");
+        //    flashImage.StartFlash();
+        //}
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-      
- 
-        isDead = true;
-        Camera.main.SendMessage("Shake");
-        Animator a = sprite.GetComponent<Animator>();
-        a.SetTrigger("Dead");
-        flashImage.StartFlash();
+
+        //if (IsDead == false)
+        //{
+            isDead = true;
+            Camera.main.SendMessage("Shake");
+            Animator a = sprite.GetComponent<Animator>();
+            a.SetTrigger("Dead");
+            flashImage.StartFlash();
+        
     }
     public void SetKinematic(bool value)
     {
