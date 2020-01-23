@@ -5,7 +5,8 @@
 
 
 #  #2
-! [dsfish gif] (https://user-images.githubusercontent.com/54298426/72986065-b5ed5580-3e2a-11ea-9f81-42e0809c7955.gif)
+![dsfish gif](https://user-images.githubusercontent.com/54298426/72986065-b5ed5580-3e2a-11ea-9f81-42e0809c7955.gif)
+
 이어하기 기능 추가
 시작 로고 이미지 추가
 최고 기록 돌파시 UI 애니메이션 추가
